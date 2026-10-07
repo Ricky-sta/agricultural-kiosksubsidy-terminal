@@ -1,0 +1,136 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --color-alert: var(--alert);
+  --color-alert-foreground: var(--alert-foreground);
+  --color-success: var(--success);
+  --color-surface: var(--surface);
+  --font-sans: var(--font-noto-sans), var(--font-noto-devanagari), var(--font-noto-kannada),
+    var(--font-noto-telugu), var(--font-noto-tamil), var(--font-noto-bengali), var(--font-noto-gurmukhi),
+    system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+  --background: #0f5132;
+  --foreground: #ffffff;
+  --surface: #0a3d25;
+  --card: #0b4329;
+  --card-foreground: #ffffff;
+  --popover: #0a3d25;
+  --popover-foreground: #ffffff;
+  --primary: #ffc107;
+  --primary-foreground: #0a2a1a;
+  --secondary: #ffffff;
+  --secondary-foreground: #0a2a1a;
+  --muted: #13603d;
+  --muted-foreground: #d4eadc;
+  --accent: #ffc107;
+  --accent-foreground: #0a2a1a;
+  --destructive: #e5383b;
+  --alert: #b3191c;
+  --alert-foreground: #ffffff;
+  --success: #22c55e;
+  --border: rgba(255, 255, 255, 0.22);
+  --input: rgba(255, 255, 255, 0.3);
+  --ring: #ffc107;
+  --chart-1: #ffc107;
+  --chart-2: #22c55e;
+  --chart-3: #ffffff;
+  --chart-4: #e5383b;
+  --chart-5: #13603d;
+  --radius: 1rem;
+  --sidebar: #0a3d25;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #ffc107;
+  --sidebar-primary-foreground: #0a2a1a;
+  --sidebar-accent: #13603d;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.22);
+  --sidebar-ring: #ffc107;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  :focus-visible {
+    outline: 4px solid var(--ring);
+    outline-offset: 3px;
+  }
+}
+
+@keyframes wave-bar {
+  0%, 100% { transform: scaleY(0.25); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes scan-line {
+  0% { top: 8%; }
+  50% { top: 88%; }
+  100% { top: 8%; }
+}
+
+@keyframes arrow-nudge {
+  0%, 100% { transform: translateX(0); opacity: 0.7; }
+  50% { transform: translateX(8px); opacity: 1; }
+}
+
+@keyframes flash {
+  0% { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+
+.animate-wave-bar { animation: wave-bar 0.9s ease-in-out infinite; transform-origin: center; }
+.animate-scan-line { animation: scan-line 2.4s ease-in-out infinite; }
+.animate-arrow-nudge { animation: arrow-nudge 1.2s ease-in-out infinite; }
+.animate-flash { animation: flash 0.5s ease-out forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-wave-bar, .animate-scan-line, .animate-arrow-nudge { animation: none; }
+}
