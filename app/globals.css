@@ -47,9 +47,8 @@
   --color-alert-foreground: var(--alert-foreground);
   --color-success: var(--success);
   --color-surface: var(--surface);
-  --font-sans: var(--font-noto-sans), var(--font-noto-devanagari), var(--font-noto-kannada),
-    var(--font-noto-telugu), var(--font-noto-tamil), var(--font-noto-bengali), var(--font-noto-gurmukhi),
-    system-ui, sans-serif;
+  --font-sans: var(--font-noto-sans), 'Noto Sans Devanagari', 'Noto Sans Kannada', 'Noto Sans Telugu',
+    'Noto Sans Tamil', 'Noto Sans Bengali', 'Noto Sans Gurmukhi', system-ui, sans-serif;
 }
 
 :root {

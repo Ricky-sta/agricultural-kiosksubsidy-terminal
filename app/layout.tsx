@@ -1,23 +1,12 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import {
-  Noto_Sans,
-  Noto_Sans_Bengali,
-  Noto_Sans_Devanagari,
-  Noto_Sans_Gurmukhi,
-  Noto_Sans_Kannada,
-  Noto_Sans_Tamil,
-  Noto_Sans_Telugu,
-} from 'next/font/google'
+import { Noto_Sans } from 'next/font/google'
 import './globals.css'
 
 const notoSans = Noto_Sans({ subsets: ['latin'], weight: ['500', '700', '800'], variable: '--font-noto-sans' })
-const notoDevanagari = Noto_Sans_Devanagari({ weight: ['500', '700'], variable: '--font-noto-devanagari', preload: false })
-const notoKannada = Noto_Sans_Kannada({ weight: ['500', '700'], variable: '--font-noto-kannada', preload: false })
-const notoTelugu = Noto_Sans_Telugu({ weight: ['500', '700'], variable: '--font-noto-telugu', preload: false })
-const notoTamil = Noto_Sans_Tamil({ weight: ['500', '700'], variable: '--font-noto-tamil', preload: false })
-const notoBengali = Noto_Sans_Bengali({ weight: ['500', '700'], variable: '--font-noto-bengali', preload: false })
-const notoGurmukhi = Noto_Sans_Gurmukhi({ weight: ['500', '700'], variable: '--font-noto-gurmukhi', preload: false })
+// Indic script fonts load via a stylesheet because next/font/google fails to resolve them in Turbopack production builds.
+const INDIC_FONTS_URL =
+  'https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@500;700&family=Noto+Sans+Devanagari:wght@500;700&family=Noto+Sans+Gurmukhi:wght@500;700&family=Noto+Sans+Kannada:wght@500;700&family=Noto+Sans+Tamil:wght@500;700&family=Noto+Sans+Telugu:wght@500;700&display=swap'
 
 export const metadata: Metadata = {
   title: 'Gram Panchayat Agriculture AI Kiosk Terminal',
@@ -49,8 +38,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${notoSans.variable} ${notoDevanagari.variable} ${notoKannada.variable} ${notoTelugu.variable} ${notoTamil.variable} ${notoBengali.variable} ${notoGurmukhi.variable}`}
+      className={notoSans.variable}
     >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="stylesheet" href={INDIC_FONTS_URL} />
+      </head>
       <body className="antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
